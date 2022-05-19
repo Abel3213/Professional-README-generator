@@ -2,9 +2,9 @@ module.exports = templateData => {
   // destructure page data by section
   const { people, links, tableOfContents, ...info } = templateData;
 
-  const generatetableOfContents = tableOfContentsTabs => {
+  const generateToc = tableOfContentsTabs => {
     if (!tableOfContentsTabs) {
-      return '';
+      return ``;
     }
     return `
     - [Installation](#installation)
@@ -24,25 +24,34 @@ module.exports = templateData => {
           .${collabGithub}
           `;
         })
-        .join('')}
-        `;
+        .join('')
+
+      }
+    `;
   };
 
   return `
-  # ${title}
+# ${info.title}
 
-## ${description}
+## Description
+${info.description}
 
-## Table of Contents(Optional)
+## Table of Contents
+${generateToc(tableOfContents)}
 
-## ${installation}
+## Installation
+${info.installation}
 
-## ${usage}
+## Usage
+${info.usage}
 
 ## Credits
-${generatePeople}
 
-.${links}
+-Collaborators
+${generatePeople(people)}
+
+-resources
+
 
 ## License
 
