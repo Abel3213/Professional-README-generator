@@ -1,13 +1,17 @@
 // TODO: Include packages needed for this application
 
-// TODO: Create an array of questions for user input
-const questions = [];
+const { basicQuestions, credit, resources } = require('./utils/questions')
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+basicQuestions()
+  .then(credit)
+  .then(resources)
+  .then(readmeData => {
+    return generateReadme(readmeData);
+  })
 
-// Function call to initialize app
-init();
+
+
+
+
