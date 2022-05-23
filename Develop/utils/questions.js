@@ -56,10 +56,86 @@ const basicQuestions = () => {
         },
         {
             type: 'confirm',
+            name: 'confirmCg',
+            message: 'Would you like to add contribution guidelines?',
+            default: false
+        },
+        {
+            type: 'input',
+            name: 'cg',
+            message: 'Provide the contribution guidelines:',
+            when: ({ confirmCg }) => {
+                if (confirmCg) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'confirm',
+            name: 'confirmTestInstructions',
+            message: 'Would you like to add test instructions?',
+            default: false
+        },
+        {
+            type: 'input',
+            name: 'ti',
+            message: 'Provide test instructions:',
+            when: ({ confirmTestInstructions }) => {
+                if (confirmTestInstructions) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'confirm',
             name: 'tableOfContents',
             message: 'Would you like to generate a table of contents?',
             default: true
+        },
+        {
+            type: 'input',
+            name: 'githubUser',
+            message: 'What is your gitHub username?',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your gitHub username!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email?',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your email!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'reachMe',
+            message: 'How would you like people to reach you?',
+            validate: reachMeInput => {
+                if (reachMeInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your instructions on how to reach you!');
+                    return false;
+                }
+            }
         }
+
     ]);
 };
 
@@ -216,4 +292,16 @@ const resources = creditLinks => {
         });
 };
 
-module.exports = { basicQuestions, credit, resources };
+// const license = () => {
+//     return inquirer.prompt([
+//         {
+//             type: 'checkbox',
+//             name: 'license',
+//             message: 'What license would you like to use?',
+//             choices: ['Apache License 2.0', 'GNU General Public License v3.0', 'MIT License', 'BSD 2-Clause "Simplified" License', 'jBSD 3-Clause "New" or "Revised" License', 'Boost Software License 1.0', 'Creative Commons Zero v1.0 Universal', 'Eclipse Public License 2.0', 'GNU Affero General Public License v3.0', 'GNU General Public License v2.0', 'GNU Lesser General Public License v2.1', 'Mozilla Public License 2.0', 'The Unlicense']
+//         }
+//     ]);
+// };
+
+module.exports = { basicQuestions, credit, resources, };
+// license 

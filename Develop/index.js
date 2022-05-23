@@ -1,6 +1,6 @@
 // TODO: Include packages needed for this application
 const { writeFile } = require('./utils/writefile')
-const { basicQuestions, credit, resources } = require('./utils/questions')
+const { basicQuestions, credit, resources, contactMe, license } = require('./utils/questions')
 const generateReadme = require('./utils/generateMarkdown')
 
 
@@ -9,6 +9,7 @@ const generateReadme = require('./utils/generateMarkdown')
 basicQuestions()
   .then(credit)
   .then(resources)
+  .then(license)
   .then(readmeData => {
     return generateReadme(readmeData);
   })

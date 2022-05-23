@@ -7,10 +7,33 @@ module.exports = templateData => {
       return ``;
     }
     return `
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Credits](#credits)
-    - [License](#license)
+- [Installation] (#installation)
+- [Usage] (#usage)
+- [Credits] (#credits)
+- [License] (#license)
+- [Ccontribution Guidelines] (#contribution guidelines)
+- [Test Instructions] (#test instructions)
+- [Questions/Contact Me] (#questions/contact me)
+      `
+  };
+
+  const generateCg = cgText => {
+    if (!cgText) {
+      return '';
+    }
+    return `
+## Contribution Guidelines
+${cgText}
+      `
+  };
+
+  const generateTi = tiText => {
+    if (!tiText) {
+      return '';
+    }
+    return `
+## Test Instructions
+${tiText}
       `
   };
 
@@ -19,9 +42,23 @@ module.exports = templateData => {
         ${peopleArr
         .map(({ name, collabGithub }) => {
           return `
-          .${name}
+Name:${name}
 
-          .${collabGithub}
+Github:${collabGithub}
+          `;
+        })
+        .join('')
+
+      }
+    `;
+  };
+
+  const generateLinks = linksArr => {
+    return `
+      ${linksArr
+        .map(({ credits }) => {
+          return `
+${credits}
           `;
         })
         .join('')
@@ -50,55 +87,36 @@ ${info.usage}
 -Collaborators
 ${generatePeople(people)}
 
--resources
+-Resources
 
+${generateLinks(links)}
+
+${generateCg(info.cg)}
+
+${generateTi(info.ti)}
+
+## Question/Contact Me
+
+-Github 
+
+${info.githubUser}
+
+ https://github.com/${info.githubUser}
+
+-Email
+
+${info.email}
+
+Reach out to me
+
+${info.reachMe}
 
 ## License
 
-The last section of a high - quality README file is the license.This lets other developers know what they can and cannot do with your project.If you need help choosing a license, refer to[https://choosealicense.com/](https://choosealicense.com/).
   `;
 };
 
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) { }
+// ${info.license}
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) { }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) { }
 
-//
-
-// // TODO: Create a function to generate markdown for README
-// function generateMarkdown(readmeData) {
-//   return `
-// # ${ readmeData.title }
-
-// ## ${ readmeData.description }
-
-// ## Table of Contents(Optional)
-
-// ## ${ readmeData.installation }
-
-// ## ${ readmeData.usage }
-
-// ## Credits
-
-//   .${ readmeData.people.name }
-
-// .${ readmeData.people.collabGithub }
-
-// .${ readmeData.links.credits }
-
-// ## License
-
-// The last section of a high - quality README file is the license.This lets other developers know what they can and cannot do with your project.If you need help choosing a license, refer to[https://choosealicense.com/](https://choosealicense.com/).
-
-// `;
-// }
-
-// module.exports = generateMarkdown;
